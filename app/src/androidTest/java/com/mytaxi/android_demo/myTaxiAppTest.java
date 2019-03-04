@@ -3,8 +3,6 @@ package com.mytaxi.android_demo;
 import com.mytaxi.android_demo.activities.MainActivity;
 
 import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.Espresso;
-import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -41,7 +39,7 @@ import org.junit.runners.MethodSorters;
  */
 @RunWith(AndroidJUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class myTaxiAppTest {
+public class MyTaxiAppTest {
 
     //Test data
     private static final String USERNAME = "crazydog335";
@@ -69,47 +67,51 @@ public class myTaxiAppTest {
 
     @Test
     //case1 : when user doesn't input username
-    public void case1_empty_username() {
+    public void case1_empty_username() throws Exception {
         //Do
         onView(withId(R.id.edt_username)).perform(clearText());
         onView(withId(R.id.btn_login)).perform(click());
+        Thread.sleep(1000);
         //Assertion : error message is displayed
         onView(withText(R.string.message_username_empty)).check(matches(isDisplayed()));
     }
 
     @Test
     //case2 : when user doesn't input password
-    public void case2_empty_password() {
+    public void case2_empty_password() throws Exception{
         //Do
         onView(withId(R.id.edt_username)).perform(clearText());
         onView(withId(R.id.edt_username)).perform(typeText(USERNAME), closeSoftKeyboard());
         onView(withId(R.id.edt_password)).perform(clearText());
         onView(withId(R.id.btn_login)).perform(click());
+        Thread.sleep(1000);
         //Assertion : error message is displayed
         onView(withText(R.string.message_password_empty)).check(matches(isDisplayed()));
     }
 
     @Test
     //case3 : when user inputs wrong username or password
-    public void case3_invalid_username_password() {
+    public void case3_invalid_username_password() throws Exception {
         //Do
         onView(withId(R.id.edt_username)).perform(clearText());
         onView(withId(R.id.edt_username)).perform(typeText(USERNAME));
         onView(withId(R.id.edt_password)).perform(typeText("1234"), closeSoftKeyboard());
         onView(withId(R.id.btn_login)).perform(click());
+        Thread.sleep(1000);
         //Assertion : error message is displayed
         onView(withText(R.string.message_username_password_invalid)).check(matches(isDisplayed()));
     }
 
     @Test
     //case4 : when user input correct username and password
-    public void case4_login_success() {
+    public void case4_login_success() throws Exception{
         //Do
         onView(withId(R.id.edt_username)).perform(clearText());
         onView(withId(R.id.edt_password)).perform(clearText());
         onView(withId(R.id.edt_username)).perform(typeText(USERNAME));
         onView(withId(R.id.edt_password)).perform(typeText(PASSWORD), closeSoftKeyboard());
         onView(withId(R.id.btn_login)).perform(click());
+        Thread.sleep(1000);
         //Assertion : Login succeeds
         //App name is displayed at toolbar
         onView(withId(R.id.toolbar)).check(matches(isDisplayed()));
