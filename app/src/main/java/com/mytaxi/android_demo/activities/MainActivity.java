@@ -56,10 +56,10 @@ public class MainActivity extends AuthenticatedActivity
     PermissionHelper mPermissionHelper;
 
     @Inject
-    SharedPr efStorage mSharedPrefStorage;
+    SharedPrefStorage mSharedPrefStorage;
 
     private GoogleMap mMap;
-    priv ate FusedLocationProviderClient mFusedLocationProviderClient;
+    private FusedLocationProviderClient mFusedLocationProviderClient;
     private BitmapDescriptor mIconMarker;
     private Location mLastKnownLocation;
     private AutoCompleteTextView mSearchView;
